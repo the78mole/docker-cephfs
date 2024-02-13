@@ -14,13 +14,12 @@ Crating the keyring can be achieved on your ceph manager node:
         key = acbdef....xyz==
     $ ceph auth get client.<SOME_NAME> >> /etc/ceph/ceph.client.<SOME_NAME>.keyring
 
-    The copy the keyring to your client, where you will run the CephFS client docker container, adjust the Dockerfile, the docker-compose.yml file and the entrypoint.sh to your needs and bring up the cointainer using one of the two following methods:
+The copy the keyring to your client, where you will run the CephFS client docker container, adjust the Dockerfile, the docker-compose.yml file and the entrypoint.sh to your needs and bring up the cointainer using one of the two following methods:
 
-        $ docker run --privileged --device /dev/fuse -v /mnt:/mnt:shared -it jammy-test /bin/bash
-        $ ceph-fuse -n client.<YOUR_NAME> /mnt/cephfs
+    $ docker run --privileged --device /dev/fuse -v /mnt:/mnt:shared -it jammy-test /bin/bash
+    $ ceph-fuse -n client.<YOUR_NAME> /mnt/cephfs
 
-        # or
+    # or
+    $ docker compose up -d
 
-        $ docker compose up -d
-
-    If you now inspect the /mnt/cephfs mount point, you can list the content of your CephFS there.
+If you now inspect the /mnt/cephfs mount point, you can list the content of your CephFS there.
